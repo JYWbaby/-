@@ -7,12 +7,12 @@
 
 /*    
 			EN1:PD11
-			PWMÊä³ö£º FTM0_CH7_PD07
-			UARTÍ¨ÐÅ: UART5_RX_PE09_TX_PE08
-			±àÂëÆ÷½Ó¿Ú:PA08,PA09
+			PWMè¾“å‡ºï¼š FTM0_CH7_PD07
+			UARTé€šä¿¡: UART5_RX_PE09_TX_PE08
+			ç¼–ç å™¨æŽ¥å£:PA08,PA09
 
 
-
+123123
 
 */
 
@@ -57,21 +57,21 @@ int main(){
 	
 		DelayInit();
 		
-		//pid³õÊ¼»¯
+		//pidåˆå§‹åŒ–
 		Pid_All_Init();
 	
-		//uart³õÊ¼»¯
+		//uartåˆå§‹åŒ–
 		UART_QuickInit(UART5_RX_PE09_TX_PE08 ,115200);  
 
 	
-		//ftm³õÊ¼»¯
-		PDout(11)=0;     //EN1Ê¹ÄÜ
+		//ftmåˆå§‹åŒ–
+		PDout(11)=0;     //EN1ä½¿èƒ½
 		PDout(9)=0;
 		FTM_PWM_QuickInit(FTM0_CH7_PD07, kPWM_EdgeAligned, 10000);
-		FTM_PWM_ChangeDuty(HW_FTM0, HW_FTM_CH7, 0);     /* 0-10000 ¶ÔÓ¦ 0-100% */
+		FTM_PWM_ChangeDuty(HW_FTM0, HW_FTM_CH7, 0);     /* 0-10000 å¯¹åº” 0-100% */
 	
     
-		//³õÊ¼»¯½âÂë
+		//åˆå§‹åŒ–è§£ç 
 		FTM_QD_QuickInit(FTM1_QD_PHA_PA08_PHB_PA09, kFTM_QD_NormalPolarity,kQD_PHABEncoding);
 	
 	//pit
