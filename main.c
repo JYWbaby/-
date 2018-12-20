@@ -1,22 +1,4 @@
-#include "pid.h"
-#include "ftm.h"
-#include "uart.h"
-#include "shiboqi.h"
-#include "pit.h"
-#include "gpio.h"
-
-/*    
-			EN1:PD11
-			PWM输出： FTM0_CH7_PD07
-			UART通信: UART5_RX_PE09_TX_PE08
-			编码器接口:PA08,PA09
-
-
-123123
-
-*/
-
-int16_t goal_speed;
+aioslkbflkabkbsflkbsflkfbsaklfbalkafsb
 
 float speed;
 
