@@ -1,72 +1,57 @@
-aioslkbflkabkbsflkbsflkfbsaklfbalkafsb
+#include "gpio.h"
+#include "common.h"
+#include "uart.h"
+#include "ftm.h"
+#include "pit.h"
+#include "cpuidy.h"
+#include "uart.h"
+#include "adc.h"
 
-float speed;
 
-
-
-static void PIT_ISR(void)
+void Intx(void)
 {
-	int value;
-	uint8_t  direction;
+	  DelayInit();    //ÑÓÊ±³õÊ¼»¯
+    UART_QuickInit(UART0_RX_PD06_TX_PD07, 115200);              //´®¿Ú³õÊ¼»¯                  /* ³õÊ¼»¯Ò»¸ö´®¿Ú Ê¹ÓÃUART0¶Ë¿ÚµÄPTD6Òý½ÅºÍPTD7Òý½Å×÷Îª½ÓÊÕºÍ·¢ËÍ£¬Ä¬ÈÏÉèÖÃ baud 115200 */
+	  ADC_QuickInit(ADC0_SE20_DM1, kADC_SingleDiff12or13);       //adc³õÊ¼»¯  £¨Ò»Â·£©   	ADC0 Í¨µÀ20 Òý½ÅDM1 µ¥¶Ë ¾«¶È 12Î»
+	  FTM_PWM_QuickInit(FTM0_CH3_PA06, kPWM_EdgeAligned, 1000);  //FTM0  Í¨µÀ3 PTA6   1000HZ   pwm,Ä¬ÈÏ  50%Õ¼¿Õ±È)
 	
-	FTM_QD_GetData(HW_FTM1, &value, &direction);
-	FTM_QD_ClearCount(HW_FTM1);
-	speed=value;//(25*0.001);
-	
-	Motor_Control(goal_speed,speed);
+	  FTM_QD_QuickInit(FTM1_QD_PHA_PA08_PHB_PA09, kFTM_QD_NormalPolarity, kQD_CountDirectionEncoding);  //Õý½»½âÂë³õÊ¼»¯  
 	
 }
 
 
 
 
+void mac(void)           // Í¨ÓÃio¿ÚÊäÈëÊä³öº¯Êý
+{
+
+	GPIO_QuickInit(HW_GPIOD, 11, kGPIO_Mode_OPP);             //io¿Ú¼òµ¥³õÊ¼»¯
+	GPIO_WriteBit(HW_GPIOD, 11, 1);                           //ÖÆ¶¨Òý½ÅÅäÖÃ¸ßµçÆ½
+	
+	                   
+	GPIO_QuickInit(HW_GPIOD, 9, kGPIO_Mode_OPP);              //io¿Ú¼òµ¥³õÊ¼»¯
+	GPIO_WriteBit(HW_GPIOD, 9, 0);                            //ÖÆ¶¨Òý½ÅÅäÖÃ¸ßµçÆ½
+	
+}
 
 
 
 
+int main(void)
+{
+    Intx();  //³õÊ¼»¯º¯Êý
+	  mac();  // Í¨ÓÃio¿ÚÊäÈëÊä³öº¯Êý
+	
+	 
+   
 
-
-
-
-int main(){
-		
-		GPIO_QuickInit(HW_GPIOD, 11, kGPIO_Mode_OPP);
-		GPIO_QuickInit(HW_GPIOD, 9, kGPIO_Mode_OPP);
 
 	
-	
-		goal_speed=73.0;
-	
-		DelayInit();
-		
-		//pid初始化
-		Pid_All_Init();
-	
-		//uart初始化
-		UART_QuickInit(UART5_RX_PE09_TX_PE08 ,115200);  
+	while(1)
+    {
+    printf("HelloWorld!!!\r\n"); 
+        GPIO_ToggleBit(HW_GPIOE, 6);
+        DelayMs(500);
+    }
+}
 
-	
-		//ftm初始化
-		PDout(11)=0;     //EN1使能
-		PDout(9)=0;
-		FTM_PWM_QuickInit(FTM0_CH7_PD07, kPWM_EdgeAligned, 10000);
-		FTM_PWM_ChangeDuty(HW_FTM0, HW_FTM_CH7, 0);     /* 0-10000 对应 0-100% */
-	
-    
-		//初始化解码
-		FTM_QD_QuickInit(FTM1_QD_PHA_PA08_PHB_PA09, kFTM_QD_NormalPolarity,kQD_PHABEncoding);
-	
-	//pit
-    PIT_InitTypeDef PIT_InitStruct1;
-    PIT_InitStruct1.chl = HW_PIT_CH0;
-    PIT_InitStruct1.timeInUs = 25*1000;//25ms 
-    PIT_Init(&PIT_InitStruct1);
-    PIT_CallbackInstall(HW_PIT_CH0, PIT_ISR);
-    PIT_ITDMAConfig(HW_PIT_CH0, kPIT_IT_TOF, true);
-		
-		
-	
-		while(1){
-			VisualScope_Output(speed,goal_speed,0,0);
-		}      
-	}
