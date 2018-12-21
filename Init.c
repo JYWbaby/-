@@ -2,7 +2,9 @@ void Init()
 {
 	//系统初始化
 	
-	//delay_Init
+	gpio_Init();
+	
+	delay_Init();
 	 
 	 //pid算法初始化
 		pid_Init();
