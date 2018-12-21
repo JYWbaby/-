@@ -1,24 +1,30 @@
 void Init()
 {
-	//ÏµÍ³³õÊ¼»¯
+	//ç³»ç»Ÿåˆå§‹åŒ–
 	
 	//delay_Init
 	 
-	 //pidËã·¨³õÊ¼»¯
+	 //pidç®—æ³•åˆå§‹åŒ–
 		pid_Init();
 	
-	 //µç»úpwmÊä³ö³õÊ¼»¯
+	 //ç”µæœºpwmè¾“å‡ºåˆå§‹åŒ–
 		ftm_motor_pwm_Init();
 	
-	 //¶æ»úpwmÊä³ö³õÊ¼»¯
+	 //èˆµæœºpwmè¾“å‡ºåˆå§‹åŒ–
 		ftm_servo_pwm_Init();
 	
-   //±àÂëÆ÷ftm³õÊ¼»¯	
+   //ç¼–ç å™¨ftmåˆå§‹åŒ–	
 		ftm_encorder_Init();
 	
-	 //pit³õÊ¼»¯
+	 //pitåˆå§‹åŒ–
 	  pit_init();
 	
-	  //adc³õÊ¼»¯
+	  //adcåˆå§‹åŒ–
 	  adc_Init();
+	
+	 //å¹²ç°§ç®¡åˆå§‹åŒ–
+	reed_Init();
+		
+	  //oledåˆå§‹åŒ–
+	oled_Init();
 }
