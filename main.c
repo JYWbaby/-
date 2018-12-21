@@ -1,57 +1,65 @@
-#include "gpio.h"
-#include "common.h"
-#include "uart.h"
+#include "pid.h"
 #include "ftm.h"
-#include "pit.h"
-#include "cpuidy.h"
 #include "uart.h"
-#include "adc.h"
+#include "shiboqi.h"
+#include "pit.h"
+#include "gpio.h"
 
 
-void Intx(void)
+
+
+
+float speed;
+float sensor_1,sensor_2,sensor_3,sensor_4;//4路传感器反馈值，分别为左2，左1，右1，右2
+
+
+//中断读取编码器脉冲
+//反馈给控制程序
+static void PIT_ISR(void)
 {
-	  DelayInit();    //脩脫脢卤鲁玫脢录禄炉
-    UART_QuickInit(UART0_RX_PD06_TX_PD07, 115200);              //麓庐驴脷鲁玫脢录禄炉                  /* 鲁玫脢录禄炉脪禄赂枚麓庐驴脷 脢鹿脫脙UART0露脣驴脷碌脛PTD6脪媒陆脜潞脥PTD7脪媒陆脜脳梅脦陋陆脫脢脮潞脥路垄脣脥拢卢脛卢脠脧脡猫脰脙 baud 115200 */
-	  ADC_QuickInit(ADC0_SE20_DM1, kADC_SingleDiff12or13);       //adc鲁玫脢录禄炉  拢篓脪禄脗路拢漏   	ADC0 脥篓碌脌20 脪媒陆脜DM1 碌楼露脣 戮芦露脠 12脦禄
-	  FTM_PWM_QuickInit(FTM0_CH3_PA06, kPWM_EdgeAligned, 1000);  //FTM0  脥篓碌脌3 PTA6   1000HZ   pwm,脛卢脠脧  50%脮录驴脮卤脠)
+	int value;
+	uint8_t  direction;
 	
-	  FTM_QD_QuickInit(FTM1_QD_PHA_PA08_PHB_PA09, kFTM_QD_NormalPolarity, kQD_CountDirectionEncoding);  //脮媒陆禄陆芒脗毛鲁玫脢录禄炉  
+	FTM_QD_GetData(HW_FTM1, &value, &direction);
+	FTM_QD_ClearCount(HW_FTM1);
+	speed=value;//(25*0.001);
 	
+  control(sensor_1,sensor_2,sensor_3,sensor_4);
+	
+	//oled显示
 }
 
 
 
 
-void mac(void)           // 脥篓脫脙io驴脷脢盲脠毛脢盲鲁枚潞炉脢媒
-{
-
-	GPIO_QuickInit(HW_GPIOD, 11, kGPIO_Mode_OPP);             //io驴脷录貌碌楼鲁玫脢录禄炉
-	GPIO_WriteBit(HW_GPIOD, 11, 1);                           //脰脝露篓脪媒陆脜脜盲脰脙赂脽碌莽脝陆
-	
-	                   
-	GPIO_QuickInit(HW_GPIOD, 9, kGPIO_Mode_OPP);              //io驴脷录貌碌楼鲁玫脢录禄炉
-	GPIO_WriteBit(HW_GPIOD, 9, 0);                            //脰脝露篓脪媒陆脜脜盲脰脙赂脽碌莽脝陆
-	
-}
 
 
 
 
-int main(void)
-{
-    Intx();  //鲁玫脢录禄炉潞炉脢媒
-	  mac();  // 脥篓脫脙io驴脷脢盲脠毛脢盲鲁枚潞炉脢媒
-	
-	 
-   
 
+
+
+
+int main(){
+		
+		Init();//初始化
 
 	
-	while(1)
-    {
-    printf("HelloWorld!!!\r\n"); 
-        GPIO_ToggleBit(HW_GPIOE, 6);
-        DelayMs(500);
-    }
-}
-
+	
+		
+		
+		
+	
+		while(1){
+		 //干簧管检测停车标志
+		 //如果检测到终点，则stop（）
+			
+			
+			//adc_1读取
+			//adc_2读取
+			//adc_3读取
+			//adc_4读取
+			
+			//根据读取到的值来确定速度和方向
+		}      
+	}
