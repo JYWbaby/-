@@ -1,12 +1,12 @@
-//´Ëº¯ÊıÓÃÓÚ¸ù¾İ4¸ö´«¸ĞÆ÷µÄÖµÀ´¿ØÖÆµç»úºÍ¶æ»ú
+//æ­¤å‡½æ•°ç”¨äºæ ¹æ®4ä¸ªä¼ æ„Ÿå™¨çš„å€¼å’Œç¼–ç å™¨çš„æ•°å€¼æ¥æ§åˆ¶ç”µæœºå’Œèˆµæœº
 
 float value1,value2;
 
-void contol(float s1,float s2,float s3,float s4)//ÊäÈë±äÁ¿Îª4¸ö´«¸ĞÆ÷½ÓÊÜÖµ
+void contol(float s1,float s2,float s3,float s4ï¼Œspeed)//è¾“å…¥å˜é‡ä¸º4ä¸ªä¼ æ„Ÿå™¨æ¥å—å€¼
 {
-	value1=s2-s3;//×ó1¼õÓÒ1
-	value1=s1-s4;//×ó2¼õÓÒ2
+	value1=s2-s3;//å·¦1å‡å³1
+	value1=s1-s4;//å·¦2å‡å³2
 	
-	//¸ù¾İvalue1¡¢value2µÄÖµÀ´µ÷ÕûmotorºÍservoµÄpwmÊä³ö
+	//æ ¹æ®value1ã€value2çš„å€¼æ¥è°ƒæ•´motorå’Œservoçš„pwmè¾“å‡ºï¼ˆpidç®—æ³•ï¼‰
 	
 }
