@@ -9,7 +9,6 @@ int Value1=0;//编码器读数定义
 void GetSpeed()
 {
 
- GPIO_QuickInit(HW_GPIOC,6, kGPIO_Mode_IPU);  //gpio初始化
                                              //计数 
 	LPTMR_PC_QuickInit(LPTMR_ALT2_PC05);	
 	Value1 = LPTMR_PC_ReadCounter();
