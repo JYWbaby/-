@@ -7,8 +7,15 @@
 int Value1=0;//编码器读数定义
 //****************************编码器获取数值
 void GetSpeed()
-{//计数
- //清零
+{
+
+ GPIO_QuickInit(HW_GPIOC,6, kGPIO_Mode_IPU);  //gpio初始化
+                                             //计数 
+	LPTMR_PC_QuickInit(LPTMR_ALT2_PC05);	
+	Value1 = LPTMR_PC_ReadCounter();
+	                                    //计数用这个模块 方便！			     
+					     
+        LPTMR_ClearCounter();                                  //清零
  
 
 }
@@ -38,7 +45,8 @@ FTM_PWM_ChangeDuty(HW_FTM1, HW_FTM_CH0, PWM);
 //*****************************电机控制
 void Motor_Control()
 {
-//pid参数转化 同时转换占空比
+//传入计算出的pid
+pid参数转化 同时转换占空比
 
 FTM_PWM_ChangeDuty(HW_FTM1, HW_FTM_CH0, PWM);
 }
