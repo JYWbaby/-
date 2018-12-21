@@ -24,7 +24,7 @@ static void PIT_ISR(void)
 	FTM_QD_ClearCount(HW_FTM1);
 	speed=value;//(25*0.001);
 	
-  control(sensor_1,sensor_2,sensor_3,sensor_4);
+  control(sensor_1,sensor_2,sensor_3,sensor_4，speed);
 	
 	//oled显示
 }
