@@ -5,6 +5,8 @@
 #include "pit.h"
 #include "gpio.h"
 
+#define OFF 0
+#define SET 1
 
 
 
@@ -51,14 +53,11 @@ int main(){
 		
 	
 		while(1){
-		 //干簧管检测停车标志
+		 scan_reed();//干簧管检测停车标志
 		 //如果检测到终点，则stop（）
 			
 			
-			//adc_1读取
-			//adc_2读取
-			//adc_3读取
-			//adc_4读取
+		scan_sensor();	//adc_1、adc_2、adc_3读取、adc_4读取
 			
 			//根据读取到的值来确定速度和方向
 		}      
