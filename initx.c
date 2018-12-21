@@ -15,12 +15,16 @@ void Init()
 	 //舵机pwm输出初始化
 		ftm_servo_pwm_Init();
 	
-   //编码器ftm初始化	
-		ftm_encorder_Init();
+   //编码器gpio初始化	
+		GPIO_QuickInit(HW_GPIOC,6, kGPIO_Mode_IPU);
+   //编码器计数初始化
+	        LPTMR_PC_QuickInit(LPTMR_ALT2_PC05);
+	 
 	
-	 //pit初始化
-	  pit_init();
-	
+	//pit初始化
+	{
+	//这里面也要产生正常中断 才可以调用那个计数函数
+	}
 	  //adc初始化
 	  adc_Init();
 	
