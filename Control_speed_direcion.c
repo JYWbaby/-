@@ -2,9 +2,13 @@
 /*分为3部分
 	1.数据处理
 	2.方向控制
-	3.
-	
+	3.速度控制
+
+#define N_Speed_Filter  10    //速度滤波函数的N值
+float adc_value1,adc_value2;//ADC作差处理值
 int Value1=0;//编码器读数定义
+
+
 //****************************编码器获取数值
 void GetSpeed()
 {
@@ -32,7 +36,7 @@ void startpid_Init(void)
 
 
 //*****************************舵机控制
-void Duoji_control(void) 
+void servo_control(void) 
 {
 //pid参数转化 同时转换占空比
 
@@ -55,58 +59,56 @@ FTM_PWM_ChangeDuty(HW_FTM1, HW_FTM_CH0, PWM);
 
 
 //*****************************速度滤波
-int16_t Speed_Filter(int16_t v) 
+int16_t Speed_Filter() 
 {
-//排序之后输出中间值
+ char value_buf[N]; 
+   char count,i,j,temp; 
+   for ( count=0;count<N_Speed_Filter;count++)           //N可调
+   { 
+      value_buf[count] = GetSpeed()；
+      //delay();    此处需延时很短一段时间，具体后面调试的时候确定
+   } 
+   for (j=0;j<N-1;j++) 
+   { 
+      for (i=0;i<N-j;i++) 
+      { 
+         if ( value_buf[i]>value_buf[i+1] ) 
+         { 
+            temp = value_buf[i]; 
+            value_buf[i] = value_buf[i+1];  
+             value_buf[i+1] = temp; 
+         } 
+      } 
+   } 
+speed=value_buf[(N-1)/2];//排序之后输出中间值
+return speed;   //可以用返回值或设speed为全局变量在其他函数中调用
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-float value1,value2;
-
-void contol(float s1,float s2,float s3,float s4，speed)//输入变量为4个传感器接受值
+//*************将ADC处理值和编码器滤波值传入control函数执行控制程序
+void contol(location,speed)
 {
-	value1=s2-s3;//左1减右1
-	value1=s1-s4;//左2减右2
 	
-	//根据value1、value2的值来调整motor和servo的pwm输出（pid算法）
 	
 }
 
 
+
+//***********处理adc读取值（滤波、归一化、获得相对位置）
+void adc_deal（）
+{
+	
+}
+
+
+//***********对ADC读取并进行滤波处理
+void ADC_Filter()
+{
+
+}
+
+//****************停车
 void stop()
 {
 	GPIO_WriteBit(HW_GPIOx, x, 0);
