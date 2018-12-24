@@ -1,3 +1,134 @@
+#include <headdfile.h>
+
+/*舵机PID部分参数_______________________*/
+extern float d;  //角度(偏差值)
+extern int PWM;  //舵机pwm
+extern float error,lasterror,preverror,derror;
+extern float kp,kd;//舵机控制PD
+extern float kp_j,kp_c,kp_x;
+int value1; 
+uint8_t dir; 
+#define N_Speed_Filter  10    
+//****************************************************************************
+//  函数名：Paramater_Init(void)
+//  功能： 电机和舵机PID参数初始化
+//  说明：无
+//*****************************************************************************/
+/*
+void Paramater_Init(void)
+{
+//舵机PID部分初始化
+	error=0;
+	derror=0;
+	lasterror=0;
+	preverror=0;
+
+	kp=0.3;   
+	kd=0.45; 
+	kp_j=0.01;
+	kp_c=3500.0;
+	kp_x=0.3;
+	
+}
+*/
+/*舵机控制部分_________________________*/
+
+//****************************************************************************
+//  函数名：duoji_control(void) 
+//  功能：舵机控制函数
+//  说明：无
+//*****************************************************************************/
+/*void duoji_control(void)                         
+{	
+	derror=error-lasterror;
+	lasterror=error;
+	kp = kp_j + (error *error)/kp_c;
+	if(kp>=kp_x)kp=kp_x;  
+	//kp=0.3;
+	d=-(kp*error+kd*derror);		
+	if(d>30)	d=30;
+	if(d<-30)	d=-30;
+	PWM = ((d+102.2)/90.0+0.5)/20 * 10000;	
+	FTM_PWM_ChangeDuty(HW_FTM1, HW_FTM_CH0, PWM);
+}
+*/
+//****************************************************************************
+//  函数名：GetSpeed() 
+//  功能：获得电机转速(电机PID输入值)
+//*****************************************************************************/
+void GetSpeed()
+{  
+	//value1 = LPTMR_PC_ReadCounter();//获得LPTMR模块的计数值  ZUO
+	LPTMR_ClearCounter();//计数器归零
+	//dir_L=PTC->PDIR;
+	//dir_L=(dir_L&0x40)>>6;    //正转 为0  反转 为1
+	if(!dir)	value1 = -value1;	 
+	value1=Speed_Filter(value1);	
+}
+/*****************************????********/
+
+
+
+
+int16_t Speed_Filter(int16_t v) 
+{ int speed;
+	
+ char value_buf[6]; 
+   char count,i,j,temp; 
+   for ( count=0;count<N_Speed_Filter;count++)           //N??
+   { 
+      value_buf[count] = value1;
+      //delay();    ???????????,???????????
+   } 
+   for (j=0;j<6-1;j++) 
+   { 
+      for (i=0;i<6-j;i++) 
+      { 
+         if ( value_buf[i]>value_buf[i+1] ) 
+         { 
+            temp = value_buf[i]; 
+            value_buf[i] = value_buf[i+1];  
+             value_buf[i+1] = temp; 
+         } 
+      } 
+   } 
+speed=value_buf[(6-1)/2];//?????????
+return speed;   //????????speed?????????????
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //此函数用于根据4个传感器的值和编码器的数值来控制电机和舵机
 /*分为3部分
 	1.数据处理
