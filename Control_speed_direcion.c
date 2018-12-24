@@ -154,7 +154,7 @@ void GetADC(temp)
         /* 如果ADC转换完成 */
         if(ADC_IsConversionCompleted(channel, kADC_MuxA) == 0)
         {
-            /* 读取ADC的值  kADC_MuxA是每个ADC通道的转换器 默认都是 kADC_MuxA  MuxB 一般不能用于软件触发 */
+            /* 读取ADC的值   */
             return ADC_ReadValue(channel, kADC_MuxA);
         }
        
