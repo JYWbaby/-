@@ -1,3 +1,54 @@
+#include <headdfile.h>
+#include "initx.h"
+
+void initx(void)
+{
+	  DelayInit();    //延时初始化
+    UART_QuickInit(UART0_RX_PD06_TX_PD07, 115200);              //串口初始化                  /* 初始化一个串口 使用UART0端口的PTD6引脚和PTD7引脚作为接收和发送，默认设置 baud 115200 */
+	  Car_PIT1_Init();
+	  ADC_user_init();
+
+	
+	
+//	  FTM_PWM_QuickInit(FTM2_CH1_PB19, kPWM_EdgeAligned, 1000);  //FTM0  通道3 PTA6   1000HZ   pwm,默认  50%占空比)
+	
+//	  FTM_QD_QuickInit(FTM1_QD_PHA_PA08_PHB_PA09, kFTM_QD_NormalPolarity, kQD_CountDirectionEncoding);  //正交解码初始化  
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Init()
 {
 	//系统初始化
