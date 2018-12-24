@@ -5,6 +5,7 @@
 	3.速度控制
 
 #define N_Speed_Filter  10    //速度滤波函数的N值
+#dedine N_ADC_Filter    10    //ADC滤波的N值
 #define 
 float adc_value1,adc_value2;//ADC作差处理值
 int Value1=0;//编码器读数定义
@@ -112,7 +113,7 @@ for(temp2=1;temp2<=4;temp2++)
 {
 	 char value_buf[N]; 
    	char count,i,j,temp; 
-   	for ( count=0;count<N_Speed_Filter;count++)           //N可调
+   	for ( count=0;count<N_ADC_Filter;count++)           //N可调
    	{ 
       	value_buf[count] = GetADC(temp2)；
       	//delay();    此处需延时很短一段时间，具体后面调试的时候确定
