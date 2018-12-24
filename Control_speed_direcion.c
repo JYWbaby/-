@@ -119,17 +119,17 @@ for(temp2=1;temp2<=4;temp2++)
   	 } 
    	for (j=0;j<N-1;j++) 
   	 { 
-     	 for (i=0;i<N-j;i++) 
-      	{ 
-         	if ( value_buf[i]>value_buf[i+1] ) 
-        	 { 
-          	  temp = value_buf[i]; 
-         	   value_buf[i] = value_buf[i+1];  
-         	    value_buf[i+1] = temp; 
-         	} 
-        } 
-   } 
-adc_afterfilter[temp2]=value_buf[(N-1)/2];//排序之后输出中间值
+     	 	for (i=0;i<N-j;i++) 
+      		{ 
+         		if ( value_buf[i]>value_buf[i+1] ) 
+        	 	{ 
+          	  		temp = value_buf[i]; 
+			   	value_buf[i] = value_buf[i+1];  
+         	    		value_buf[i+1] = temp; 
+         		} 
+       		 } 
+  	 } 
+	adc_afterfilter[temp2]=value_buf[(N-1)/2];//排序之后输出中间值
 }
 
 void GetADC(temp)
