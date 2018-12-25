@@ -24,16 +24,16 @@ void  Car_PIT1_Init()
 void PIT1_CallBack(void)    
 {	
 	static uint16_t  fcflag=0;
-	
-	//int value1;
-	 fcflag++;
+	int speed_afterfilter;//滤波后速度值
+	int position;//相对位置
+	 
+		  fcflag++;
 		  AG_counter++;
+	speed_afterfilter=Speed_Filter();
+	position=adc_deal();//四路ADC滤波值记录在全局变量adc_afterfilter[]中，经归一化处理为adc_normalized[];最后得到处理后position状态
+	control(speed_afterfilter,position);//根据速度值和相对位置带入算法调整电机和舵机的状态
 	
-  FTM_QD_GetData(HW_FTM2, &value1, &dir);
-		// FTM_QD_GetData(HW_FTM1, &PUL_R,&dir);
-	//GetSpeed();
-	//Set_Speed();
-	//Motor_Control();
+		
 }
 
 
