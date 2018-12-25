@@ -4,6 +4,11 @@ int adc_afterfilter[]={0,0,0,0,0}; //adc_afterfilter[0]空置，1-4分别为滤�
 int adc_max[]={0,0,0,0,0};         //adc归一化过程中读到的最大值
 int adc_normalized[]={0,0,0,0,0}; //adc_normalized[0]空置，1-4分别为归一化后adc值
 
+#define left2 adc_afterfilter[1]
+#define left1 adc_afterfilter[2]
+#define right1 adc_afterfilter[3]
+#define right2 adc_afterfilter[4]
+
 
 
 
@@ -45,6 +50,10 @@ void ADC_user_init()
 void adc_deal()
 {
 	ADC_Filter();//得到4路adc滤波后的有效值
+	if(left1)
+	{	
+		
+		
 	
 }
 
@@ -76,6 +85,7 @@ for(temp2=1;temp2<=4;temp2++)       //读取4路ADC
 	adc_afterfilter[temp2]=value_buf[(N_ADC_Filter-1)/2];//排序之后输出中间值
 }
 
+//读取某一ADC数值
 int GetADC(temp)
 {	
 	char channel[];
