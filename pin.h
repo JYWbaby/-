@@ -14,7 +14,11 @@
  PD9->D1 (SDA)                PD4->DC
                     PD5->RST
  *********************************************/
- 
+ //舵机
+ //FTM0_CH2_PC03 
+
+
+
  /*电机管脚定义*/
 #define MOTOR_L_Z     FTM2_CH0_PA10     //FTM0_CH3_PA06
 #define MOTOR_L_F     FTM1_CH0_PA12 
