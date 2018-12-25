@@ -8,10 +8,7 @@ extern float kp,kd;//舵机控制PD
 extern float kp_j,kp_c,kp_x;
     
 
-#define N_Speed_Filter  10    //速度滤波函数的N值
 
-
-int Value1=0;//编码器读数定义
 
 
 //****************************************************************************
