@@ -1,3 +1,12 @@
+#dedine N_ADC_Filter    10    //ADC滤波的N值
+int adc_afterfilter[]={0,0,0,0,0}; //adc_afterfilter[0]空置，1-4分别为滤波后adc值
+int adc_max[]={0,0,0,0,0};         //adc归一化过程中读到的最大值
+int adc_normalized[]={0,0,0,0,0}; //adc_normalized[0]空置，1-4分别为归一化后adc值
+
+
+
+
+
 //***********处理adc读取值（滤波、归一化、获得相对位置）
 void adc_deal()
 {
@@ -59,3 +68,4 @@ void GetADC(temp)
         }
        
     }
+}
