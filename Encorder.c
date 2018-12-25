@@ -62,7 +62,7 @@ int16_t Speed_Filter()
       } 
    } 
 speed=value_buf[(N_Speed_Filter-1)/2];//排序之后输出中间值
-return speed;   //可以用返回值或设speed为全局变量在其他函数中调用
+return speed;  
 }
 
 
