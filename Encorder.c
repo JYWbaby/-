@@ -23,7 +23,7 @@ void  encoder_init()
 
 
 //（只有一个编码器）	FTM_QD_ClearCount(HW_FTM1);
-	FTM_QD_ClearCount(HW_FTM2);
+	FTM_QD_ClearCount(HW_FTM1);
 	
 }
 
