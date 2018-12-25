@@ -1,5 +1,8 @@
 #include <headdfile.h>
 #define ENC_L_PIN FTM1_QD_PHA_PB00_PHB_PB01
+#define N_Speed_Filter  10    //速度滤波函数的N值
+
+
 
 void PIT_ISR(void);//定时器中断回调函数
 
@@ -34,4 +37,32 @@ void GetSpeed()
 	FTM_QD_ClearCount(HW_FTM1);
 	return value;
 }
+
+/*****************************速度滤波********/
+int16_t Speed_Filter() 
+{
+	int speed;
+ char value_buf[N_Speed_Filter]; 
+   char count,i,j,temp; 
+   for ( count=0;count<N_Speed_Filter;count++)           //N可调
+   { 
+      value_buf[count] = GetSpeed()；
+      //delay();    此处需延时很短一段时间，具体后面调试的时候确定
+   } 
+   for (j=0;j<N_Speed_Filter-1;j++) 
+   { 
+      for (i=0;i<N_Speed_Filter-j;i++) 
+      { 
+         if ( value_buf[i]>value_buf[i+1] ) 
+         { 
+            temp = value_buf[i]; 
+            value_buf[i] = value_buf[i+1];  
+             value_buf[i+1] = temp; 
+         } 
+      } 
+   } 
+speed=value_buf[(N_Speed_Filter-1)/2];//排序之后输出中间值
+return speed;   //可以用返回值或设speed为全局变量在其他函数中调用
+}
+
 
