@@ -84,7 +84,7 @@ int main(void)
 float speed;
 float sensor_1,sensor_2,sensor_3,sensor_4;//4路传感器反馈值，分别为左2，左1，右1，右2
 
-
+/*
 //中断读取编码器脉冲
 //反馈给控制程序
 static void PIT_ISR(void)
@@ -100,7 +100,7 @@ static void PIT_ISR(void)
 	
 	//oled显示
 }
-
+*/
 
 
 
