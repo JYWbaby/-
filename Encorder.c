@@ -46,7 +46,7 @@ int16_t Speed_Filter()
    char count,i,j,temp; 
    for ( count=0;count<N_Speed_Filter;count++)           //N可调
    { 
-      value_buf[count] = GetSpeed()；
+      value_buf[count] = GetSpeed();
       //delay();    此处需延时很短一段时间，具体后面调试的时候确定
    } 
    for (j=0;j<N_Speed_Filter-1;j++) 
