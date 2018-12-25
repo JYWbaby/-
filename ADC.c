@@ -76,7 +76,7 @@ for(temp2=1;temp2<=4;temp2++)       //读取4路ADC
 	adc_afterfilter[temp2]=value_buf[(N_ADC_Filter-1)/2];//排序之后输出中间值
 }
 
-void GetADC(temp)
+int GetADC(temp)
 {	
 	char channel[];
 	int number;
