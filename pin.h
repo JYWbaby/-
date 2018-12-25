@@ -19,6 +19,8 @@
 #define MOTOR_L_Z     FTM1_CH1_PA13     //FTM0_CH3_PA06
 #define MOTOR_L_F     FTM1_CH0_PA12
 
+//电机驱动使能
+
  
  /*电机PWM输出通道定义*/
 #define PWM3   HW_FTM_CH0
