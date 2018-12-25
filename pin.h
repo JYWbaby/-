@@ -16,8 +16,8 @@
  *********************************************/
  
  /*电机管脚定义*/
-#define MOTOR_L_Z     FTM1_CH1_PA13     //FTM0_CH3_PA06
-#define MOTOR_L_F     FTM1_CH0_PA12
+#define MOTOR_L_Z     FTM2_CH0_PA10     //FTM0_CH3_PA06
+#define MOTOR_L_F     FTM1_CH0_PA12 
 
 //电机驱动使能
 
