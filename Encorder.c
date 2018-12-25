@@ -1,5 +1,5 @@
 #include <headdfile.h>
-#define ENC_L_PIN FTM1_QD_PHA_PB00_PHB_PB01
+#define ENC_L_PIN FTM2_QD_PHA_PB18_PHB_PB19
 #define N_Speed_Filter  10    //速度滤波函数的N值
 
 
