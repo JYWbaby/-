@@ -52,7 +52,7 @@ void adc_deal()
 //***********对ADC读取并进行滤波处理
 void ADC_Filter()
 {
-for(temp2=1;temp2<=4;temp2++)
+for(temp2=1;temp2<=4;temp2++)       //读取4路ADC
 {
 	 char value_buf[N_ADC_Filter]; 
    	char count,i,j,temp; 
