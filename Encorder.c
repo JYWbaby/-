@@ -28,7 +28,7 @@ void  encoder_init()
 }
 
 
-void GetSpeed()
+int GetSpeed()
 {
 	int value;
 	uint8_t  direction;
