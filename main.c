@@ -78,21 +78,3 @@ int main(void)
 
 
 
-int main(){
-		
-		Init();//初始化
-
-	
-	
-		
-		
-		
-	
-		while(1){
-		 scan_reed();//干簧管检测停车标志
-		 //如果检测到终点，则stop（）
-			
-			
-		
-		}      
-	}
