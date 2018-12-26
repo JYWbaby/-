@@ -1,3 +1,53 @@
+oled我放在主函数里面了  initx里面定义 while1 里面执行显示 我在主函数里面改了 这个函数可以删了
+
+
+extern int speed_afterfilter;/
+
+/////*****************************************////////////////////////////////
+void oled_display(int speed_afterfilter ,int position)
+{
+	unsigned char temp1[100];     //ËÙ¶ÈÊý¾Ý
+	unsigned char temp2[100];     //Î»ÖÃÊý¾Ý
+//	unsigned char temp3[100];     
+//	unsigned char temp4[100];     
+	
+	sprintf((char*)temp1,"speed: %d", speed_afterfilter );
+  sprintf((char*)temp2,"position: %d",position);
+
+	
+	LCD_Print(0,0,temp1);
+	LCD_Print(0,15,temp2);
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #include "LQ12864.h"
 
 
