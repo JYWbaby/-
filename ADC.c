@@ -145,7 +145,7 @@ void adc_deal()
 }
 
 
-//***********对ADC读取并进行滤波处理
+//***********对ADC读取并进行滤波处理,并将读数的值传入数组adc_afterfilter[]中（1、2、3、4）
 void ADC_Filter()
 {
 for(temp2=1;temp2<=4;temp2++)       //读取4路ADC
@@ -173,7 +173,7 @@ for(temp2=1;temp2<=4;temp2++)       //读取4路ADC
 }
 
 //读取某一ADC数值
-int GetADC(temp)
+int GetADC(int temp)
 {	
 	char channel[];
 	int number;
