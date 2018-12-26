@@ -31,6 +31,7 @@ void PIT1_CallBack(void)
 		  AG_counter++;
 	speed_afterfilter=Speed_Filter();
 	position=adc_deal();//四路ADC滤波值记录在全局变量adc_afterfilter[]中，经归一化处理为adc_normalized[];最后得到处理后position状态
+	oled_display(speed_afterfilter,position);//OLED显示
 	control(speed_afterfilter,position);//根据速度值和相对位置带入算法调整电机和舵机的状态
 	
 		
