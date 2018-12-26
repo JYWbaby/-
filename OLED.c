@@ -1,12 +1,31 @@
 #include "LQ12864.h"
 
 
-//************oledÏÔÊ¾Ä£¿é³õÊ¼»¯
+//************oledæ˜¾ç¤ºæ¨¡å—åˆå§‹åŒ–
 void oled_Init()
 {
-		PLL_Init(PLL180);            //³õÊ¼»¯PLLÎª180M
-		LCD_Init();			//µ÷ÓÃÁúÇñµÄLCD_Initº¯Êı
+		PLL_Init(PLL180);            //åˆå§‹åŒ–PLLä¸º180M
+		LCD_Init();			//è°ƒç”¨é¾™é‚±çš„LCD_Initå‡½æ•°
 }
 
 
-//ÓëOLEDÓĞ¹ØµÄÆäËûº¯Êı
+/*  OLDEæ˜¾ç¤º     æš‚æ—¶åªæ˜¾ç¤ºspeed å’Œ position  */
+void olde_display(int speed,int position)
+{
+	char temp1[100];     //å­˜æ”¾é€Ÿåº¦æ•°æ®
+	char temp2[100];     //å­˜æ”¾ä½ç½®æ•°æ®
+	char temp3[100];     //å­˜æ”¾å·¦ä¸¤è·¯adcç›¸å¯¹å€¼
+	char temp4[100];     //å­˜æ”¾å³ä¸¤è·¯adcç›¸å¯¹å€¼
+	
+	sprintf(temp1,"speed: %d",speed);
+	sprintf(temp2,"position: %d",position);
+	//sprintf(temp3,"L1:
+	
+	LCD_Print(0,0,temp1);
+	LCD_Print(0,15,temp2);
+	
+}
+	
+
+
+//ä¸OLEDæœ‰å…³çš„å…¶ä»–å‡½æ•°
