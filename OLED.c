@@ -10,7 +10,7 @@ void oled_Init()
 
 
 /*  OLDE显示     暂时只显示speed 和 position  */
-void olde_display(int speed,int position)
+void oled_display(int speed,int position)
 {
 	char temp1[100];     //存放速度数据
 	char temp2[100];     //存放位置数据
