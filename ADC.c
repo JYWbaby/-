@@ -1,3 +1,90 @@
+void Read_ADC(void)
+{
+     int16_t  i;
+     int16_t  ad_valu[4][4];
+     for(i=0;i<4;i++)
+     {
+         ad_valu[0][i]=AD_aver(5,ADC1_SE6_PE2);  			// AD1
+         ad_valu[1][i]=AD_aver(5,ADC1_SE6_PE2);       	// AD2
+         ad_valu[2][i]=AD_aver(5,ADC1_SE6_PE2);  			// AD3
+         ad_valu[3][i]=AD_aver(5,ADC1_SE6_PE2);     		// AD4
+         //ad_valu[4][i]=ad_ave(AD_Mid , ADC_12bit, 5);     		// AD5ÖÐ¼ä		 
+     }
+}
+
+
+//此函数为ad信号读取滤波后的信号 我在底层修改了AD_aver() ad_valu[4][i]这是一个读取adc值后均值滤波后的数组 相应的.c和.h还有底层已修改，类似邓宇邦程序 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #include <headdfile.h>
 #dedine N_ADC_Filter    10    //ADC滤波的N值
 int adc_afterfilter[]={0,0,0,0,0}; //adc_afterfilter[0]空置，1-4分别为滤波后adc值
