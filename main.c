@@ -12,22 +12,6 @@ float kp_j,kp_c,kp_x;
 extern int speed_afterfilter;//滤波后速度值
 
 /////*****************************************////////////////////////////////
-void oled_display(int speed_afterfilter ,int position)
-{
-	unsigned char temp1[100];     //速度数据
-	unsigned char temp2[100];     //位置数据
-//	unsigned char temp3[100];     //左adc数据
-//	unsigned char temp4[100];     //右adc数据
-	
-	sprintf((char*)temp1,"speed: %d", speed_afterfilter );
-  sprintf((char*)temp2,"position: %d",position);
-
-	
-	LCD_Print(0,0,temp1);
-	LCD_Print(0,15,temp2);
-	
-	
-}
 
 
 
